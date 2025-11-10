@@ -1,6 +1,30 @@
-# tulika_tours_and_travels
+# Tulika Tours & Travels
 
-A new Flutter project.
+Mobile app for booking tours and transport built with Flutter.
+
+## Features (planned)
+- Browse tour packages
+- View package details & images
+- Book a tour and view user bookings
+- User authentication (Firebase)
+- Admin interface to add/update packages (future)
+- Maps for pickup points (optional)
+
+## Tech
+Flutter, Dart, Firebase (Auth + Firestore), Provider, Google Maps
+
+## Setup
+1. `flutter pub get`
+2. Run with `flutter run`
+3. Configure Firebase (if used) — see `firebase/README.md`
+
+## Status
+Just started — basic UI done.
+
+## Contact
+nakatuddeharriet936@gmail.com
+
+
 
 ## Getting Started
 
