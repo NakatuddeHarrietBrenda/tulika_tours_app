@@ -22,10 +22,10 @@ class HomeScreen extends StatelessWidget {
     ),
         TourPackage(
       id: 'p2',
-      title: 'Ssese Islands Weekend',
+      title: 'Moutain Rwenzori Weekend',
       shortDesc: 'Relax on beaches and island hopping',
       price: 150.0,
-      imageUrl: 'assets/muchion 2.jpg',
+      imageUrl: 'assets/rwenzori 1.jpg',
     ),
   ];
 
