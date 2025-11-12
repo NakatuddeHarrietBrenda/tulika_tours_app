@@ -18,7 +18,14 @@ class HomeScreen extends StatelessWidget {
       title: 'Ssese Islands Weekend',
       shortDesc: 'Relax on beaches and island hopping',
       price: 150.0,
-      imageUrl: 'assets/macshion 2.jpg',
+      imageUrl: 'assets/muchion 2.jpg',
+    ),
+        TourPackage(
+      id: 'p2',
+      title: 'Ssese Islands Weekend',
+      shortDesc: 'Relax on beaches and island hopping',
+      price: 150.0,
+      imageUrl: 'assets/muchion 2.jpg',
     ),
   ];
 

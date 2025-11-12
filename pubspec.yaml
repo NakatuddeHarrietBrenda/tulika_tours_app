@@ -28,6 +28,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/macshion 2.jpg
+    - assets/muchion 2.jpg
     - assets/muchion.jpg
     - assets/logo.png
+    - assets/adventure.jpg
+    - assets/rwenzori.jpg
+    - assets/ticket.jpg

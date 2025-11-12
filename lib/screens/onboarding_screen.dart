@@ -16,74 +16,95 @@ class OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Colors.white,
         padding: const EdgeInsets.all(20),
-        child: PageView(
-          controller: _controller,
-          onPageChanged: (index) {
-            setState(() => isLastPage = index == 2);
-          },
+        child: Column(
           children: [
-            buildPage(
-              image: 'assets/images/onboard1.jpg',
-              title: 'Discover Uganda',
-              description: 'Explore the Pearl of Africa with Tulika Tours & Travels.',
-            ),
-            buildPage(
-              image: 'assets/images/onboard2.jpg',
-              title: 'Adventure Awaits',
-              description: 'Enjoy safaris, waterfalls, and unforgettable scenery.',
-            ),
-            buildPage(
-              image: 'assets/images/onboard3.jpg',
-              title: 'Book Easily',
-              description: 'Fast, easy, and affordable travel bookings anytime.',
-            ),
-          ],
-        ),
-      ),
-      bottomSheet: isLastPage
-          ? TextButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => const LoginScreen()),
-                );
-              },
-              child: Container(
-                width: double.infinity,
-                height: 60,
-                color: Colors.teal,
-                alignment: Alignment.center,
-                child: const Text(
-                  'Get Started',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            )
-          : Container(
-              height: 60,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Expanded(
+              child: PageView(
+                controller: _controller,
+                onPageChanged: (index) {
+                  setState(() => isLastPage = index == 2);
+                },
                 children: [
-                  TextButton(
-                    child: const Text('Skip'),
-                    onPressed: () => _controller.jumpToPage(2),
+                  buildPage(
+                    image: 'assets/rwenzori.jpg',
+                    title: 'Discover Uganda',
+                    description: 'Explore the Pearl of Africa with Tulika Tours & Travels.',
                   ),
-                  Row(
-                    children: [
-                      TextButton(
-                        child: const Text('Next'),
-                        onPressed: () => _controller.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        ),
-                      ),
-                    ],
+                  buildPage(
+                    image: 'assets/adventure.jpg',
+                    title: 'Adventure Awaits',
+                    description: 'Enjoy safaris, waterfalls, and unforgettable scenery.',
+                  ),
+                  buildPage(
+                    image: 'assets/ticket.jpg',
+                    title: 'Book Easily',
+                    description: 'Fast, easy, and affordable travel bookings anytime.',
                   ),
                 ],
               ),
             ),
+            const SizedBox(height: 20),
+            buildIndicator(),
+            const SizedBox(height: 20),
+            isLastPage
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (_) => const LoginScreen()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                        backgroundColor: Colors.teal,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: const Text(
+                        'Get Started',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                          onPressed: () => _controller.jumpToPage(2),
+                          child: const Text(
+                            'Skip',
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () => _controller.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.teal,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: const Text('Next', style: TextStyle(color: Colors.white)),
+                        ),
+                      ],
+                    ),
+                  ),
+            const SizedBox(height: 30),
+          ],
+        ),
+      ),
     );
   }
 
@@ -95,11 +116,17 @@ class OnboardingScreenState extends State<OnboardingScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(image, height: 300),
+        Expanded(
+          child: Image.asset(
+            image,
+            fit: BoxFit.contain,
+          ),
+        ),
         const SizedBox(height: 30),
         Text(
           title,
-          style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 15),
         Text(
@@ -108,6 +135,27 @@ class OnboardingScreenState extends State<OnboardingScreen> {
           style: TextStyle(fontSize: 18, color: Colors.grey[700]),
         ),
       ],
+    );
+  }
+
+  Widget buildIndicator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(
+        3,
+        (index) => AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          margin: const EdgeInsets.symmetric(horizontal: 5),
+          width: isLastPage && index == 2 ? 25 : 10,
+          height: 10,
+          decoration: BoxDecoration(
+            color: _controller.hasClients && _controller.page?.round() == index
+                ? Colors.teal
+                : Colors.grey[300],
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
+      ),
     );
   }
 }

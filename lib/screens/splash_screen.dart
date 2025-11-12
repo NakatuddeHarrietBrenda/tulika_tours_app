@@ -15,7 +15,7 @@ class SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     // Navigate to Onboarding after 3 seconds
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 7), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const OnboardingScreen()),
@@ -31,7 +31,7 @@ class SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/logo.png', height: 120),
+            Image.asset('assets/logo.png', height: 120),
             const SizedBox(height: 25),
             const Text(
               "Welcome to Tulika Tours & Travels",
