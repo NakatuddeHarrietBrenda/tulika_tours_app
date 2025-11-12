@@ -74,10 +74,14 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    CustomButton(
-                      text: "Login",
-                      onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
-                    ),
+ CustomButton(
+  text: "Login",
+  onPressed: () {
+    // After successful login, go to BottomNavigationBar screen
+    Navigator.pushReplacementNamed(context, '/main');
+  },
+),
+                 
                     const SizedBox(height: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
