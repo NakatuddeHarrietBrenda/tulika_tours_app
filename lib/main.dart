@@ -1,40 +1,13 @@
-// import 'package:flutter/material.dart';
-// // import 'package:firebase_core/firebase_core.dart';
-// import 'screens/home_screen.dart';
-
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp();
-//   runApp(const TulikaApp());
-// }
-
-// class TulikaApp extends StatelessWidget {
-//   const TulikaApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Tulika Tours & Travels',
-//       theme: ThemeData(
-//         primarySwatch: Colors.teal,
-//       ),
-//       home: HomeScreen(),
-//       debugShowCheckedModeBanner: false,
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
-// import 'package:firebase_core/firebase_core.dart'; // commented out
+import 'screens/splash_screen.dart';
+import 'screens/onboarding_screen.dart';
 import 'screens/home_screen.dart';
-import 'screens/auth_screens/forgot_password_screen.dart';
+import 'screens/auth_screens/auth_home_login_screen.dart';
 import 'screens/auth_screens/signup_screen.dart';
-import 'screens/auth_screens/login_screen.dart';
+import 'screens/auth_screens/forgot_password_screen.dart';
 import 'screens/auth_screens/verify_password_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(); // commented out
+void main() {
   runApp(const TulikaApp());
 }
 
@@ -49,16 +22,16 @@ class TulikaApp extends StatelessWidget {
         primarySwatch: Colors.teal,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/splash',
       routes: {
-        '/login': (context) => LoginScreen(),
-        '/signup': (context) => SignUpScreen(),
-        '/forgot': (context) => ForgotPasswordScreen(),
-        '/verify': (context) => VerifyPasswordScreen(),
-        '/home': (context) => HomeScreen(),
+        '/splash': (context) => const SplashScreen(),
+        '/onboarding': (context) => const OnboardingScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignUpScreen(),
+        '/forgot': (context) => const ForgotPasswordScreen(),
+        '/verify': (context) => const VerifyPasswordScreen(),
+        '/home': (context) =>  HomeScreen(),
       },
-      home: HomeScreen(), // optional, can remove if using initialRoute
     );
   }
 }
-
